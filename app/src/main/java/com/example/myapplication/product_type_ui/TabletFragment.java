@@ -1,44 +1,77 @@
 package com.example.myapplication.product_type_ui;
 
-import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
 import com.example.myapplication.ItemAdapter;
 import com.example.myapplication.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import Model.Proion;
+import db.AppDatabase;
 
 public class TabletFragment extends Fragment {
 
     ListView listView;
 
-    String[] names = {"tablet1","tablet2"};
-    String[] description = {"hi1","hi2"};
-    String[] price = {"700","90"};
+    List<String> names = new ArrayList<>();
+    List<String> description = new ArrayList<>();
+    List<Double> price = new ArrayList<>();
+    List<String> id = new ArrayList<>();
+    ArrayList<Integer> quantities = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_tablet,container, false);
-
-
     }
 
     @Override
     public void onStart() {
         super.onStart();
 
-        listView = getActivity().findViewById(R.id.tabletlist);
-        Resources res = getResources();
+        final AppDatabase db = Room.databaseBuilder(getActivity(),
+                AppDatabase.class, "eshop").build();
 
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
 
-        ItemAdapter itemAdapter = new ItemAdapter(getActivity(),names,description,price);
-        listView.setAdapter(itemAdapter);
+                List<Proion> products = db.proionDataAccessObject().findAll();
+
+                for (
+                        int i = 0; i < products.size(); i++) {
+                    if (products.get(i).getType() == 4) {
+                        names.add(products.get(i).getName());
+                        description.add(products.get(i).getPerigrafi());
+                        price.add(products.get(i).getKostos());
+                        id.add(products.get(i).getId());
+                        quantities.add(products.get(i).getApothema());
+                    }
+                }
+
+                getActivity().runOnUiThread((new Runnable() {
+                    @Override
+                    public void run() {
+
+                        listView = getActivity().findViewById(R.id.tabletlist);
+                        ItemAdapter itemAdapter = new ItemAdapter(TabletFragment.this.getActivity(), names, description, price, id,quantities);
+                        listView.setAdapter(itemAdapter);
+                    }
+                }));
+            }
+        });
     }
 }

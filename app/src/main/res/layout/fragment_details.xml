@@ -3,73 +3,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/txt"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Συμπληρώστε τα στοιχεία σας"
-        android:textSize="18dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:layout_marginTop="10dp"
-        />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/shipment_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt"
-        android:layout_marginTop="60dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Ονοματεπώνυμο"
-        />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/shipment_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/shipment_name"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Email"
-        />
+            <TextView
+                android:id="@+id/txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Συμπληρώστε τα στοιχεία σας"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/shipment_phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/shipment_email"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:inputType="number"
-        android:hint="Αριθμός Τηλεφώνου"
-        />
+            <EditText
+                android:id="@+id/shipment_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="20dp"
+                android:hint="Ονοματεπώνυμο" />
 
-    <EditText
-        android:id="@+id/shipment_home_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/shipment_phone"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Διεύθυνση"
-        />
+            <EditText
+                android:id="@+id/shipment_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/shipment_name"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:hint="Email" />
 
-    <EditText
-        android:id="@+id/shipment_city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/shipment_home_address"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Πόλη"
-        />
+            <EditText
+                android:id="@+id/shipment_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/shipment_email"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:hint="Αριθμός Τηλεφώνου"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/shipment_home_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/shipment_phone"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:hint="Διεύθυνση" />
+
+        </RelativeLayout>
+
+    </ScrollView>
     <Button
         android:id="@+id/confirm_final_order_btn"
         android:layout_width="match_parent"
@@ -81,4 +77,7 @@
         android:textColor="@android:color/white"
         android:textSize="20dp"
         />
+    
+    
+
 </RelativeLayout>

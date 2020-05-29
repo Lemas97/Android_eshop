@@ -6,27 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.room.Room;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.List;
-import java.util.UUID;
-
-import Model.Customer;
-import Model.Product;
-import Model.Sale;
-import db.AppDatabase;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+
 
 
     @Override
@@ -49,35 +40,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ShopFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_shop);
         }
-
-        //      ***************      DATABASE      ***************       //
-
-        final AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "eshop").build();
-
-
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {                 //Νεο thread ώστε να μην καθηστερεί το ui
-                Customer customer = new Customer(UUID.randomUUID().toString(), "Raf", "xd odos 25");
-                Product product = new Product(UUID.randomUUID().toString(), "gala", "neogal", 3.5, 20,2);
-                Sale sale = new Sale(UUID.randomUUID().toString(), product.getId(), customer.getId(), 3);
-
-                db.customerDao().insert(customer);
-                db.productDao().insert(product);
-                db.saleDao().insert(sale);
-
-                List<Customer> customers = db.customerDao().findAll();
-                List<Product> products = db.productDao().findAll();
-                List<Sale> sales = db.saleDao().findAll();
-
-                System.out.println(customers);
-                System.out.println(products);
-                System.out.println(sales);
-
-            }
-        });
-
     }
 
 
@@ -94,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 super.onBackPressed();
             } else {
                 getSupportFragmentManager().popBackStack();
+
             }
         }
     }
@@ -120,4 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 }
