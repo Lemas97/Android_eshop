@@ -3,23 +3,11 @@ package Model;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import java.util.UUID;
 
-@Entity(foreignKeys = {
-        @ForeignKey(entity = Pelatis.class,
-                parentColumns = "id",
-                childColumns = "pelatidId",
-                onUpdate = ForeignKey.CASCADE,
-                onDelete = ForeignKey.CASCADE),
-        @ForeignKey(entity = Proion.class,
-                parentColumns = "id",
-                childColumns = "proionId",
-                onUpdate = ForeignKey.CASCADE,
-                onDelete = ForeignKey.CASCADE)
-})
+@Entity
 public class Polisi {
     @PrimaryKey
     @NonNull
@@ -28,14 +16,14 @@ public class Polisi {
     private String proionId;
     @ColumnInfo(name = "pelatidId")
     private String pelatisId;
-    @ColumnInfo(name = "apothema")
-    private int apothema;
+    @ColumnInfo(name = "posotita")
+    private int posotita;
 
-    public Polisi(@NonNull String id, String proionId, String pelatisId, int apothema) {
+    public Polisi(@NonNull String id, String proionId, String pelatisId, int posotita) {
         this.id = id;
         this.proionId = proionId;
         this.pelatisId = pelatisId;
-        this.apothema = apothema;
+        this.posotita = posotita;
     }
 
     public String getId() {
@@ -50,8 +38,8 @@ public class Polisi {
         return pelatisId;
     }
 
-    public int getApothema() {
-        return apothema;
+    public int getPosotita() {
+        return posotita;
     }
 
     @Override
@@ -60,7 +48,7 @@ public class Polisi {
                 "id='" + id + '\'' +
                 ", proionId='" + proionId + '\'' +
                 ", pelatisId='" + pelatisId + '\'' +
-                ", apothema='" + apothema + '\'' +
+                ", posotita='" + posotita + '\'' +
                 '}';
     }
 

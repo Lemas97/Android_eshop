@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Adapters;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -11,25 +11,26 @@ import android.widget.TextView;
 
 import androidx.room.Room;
 
+import com.example.myapplication.R;
+
 import java.util.List;
-import java.util.UUID;
 
 import Model.Kalathi;
 import db.AppDatabase;
 
 public class CartItemAdapter extends BaseAdapter {
 
-    LayoutInflater mInflater;
-    Button deleteBtn;
-    List<String> names;
-    List<String> description;
-    List<Double> price;
-    List<String> id;
-
+    private LayoutInflater mInflater;
+    private List<String> names;
+    private List<String> description;
+    private List<Double> price;
+    private List<String> id;
 
 
     public CartItemAdapter(Context c, List<String> names, List<String> description, List<Double> price, List<String> id) {
         this.mInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        //Περνάω σε λίστες τα πεδία των προϊόντων
         this.names = names;
         this.description = description;
         this.price = price;
@@ -58,25 +59,9 @@ public class CartItemAdapter extends BaseAdapter {
         TextView descriptionTextView = v.findViewById(R.id.product_description);
         TextView priceTextView = v.findViewById(R.id.product_price);
 
-        final AppDatabase db = Room.databaseBuilder(mInflater.getContext(),
-                AppDatabase.class, "eshop").build();
-
         nameTextView.setText(names.get(i));
         descriptionTextView.setText(description.get(i));
         priceTextView.setText(String.valueOf(price.get(i)));
-        deleteBtn = v.findViewById(R.id.deleteFromCartBtn);
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                AsyncTask.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                       
-                    }
-                });
-            }
-        });
-        return v;
+        return v;   //Δημιουργία του Item της λίστας
     }
 }

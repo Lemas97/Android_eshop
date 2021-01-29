@@ -6,17 +6,22 @@
         <item
             android:id="@+id/nav_shop"
             android:icon="@drawable/ic_shop_black_24dp"
-            android:title="Shop"/>
+            android:title="Κατάστημα"/>
 
         <item
             android:id="@+id/nav_cart"
             android:icon="@drawable/cart_icon"
-            android:title="Cart" />
+            android:title="Καλάθι" />
 
         <item
             android:id="@+id/nav_questions"
-            android:icon="@drawable/question_icon"
-            android:title="Questions"/>
+            android:icon="@drawable/info_icon"
+            android:title="Ερωτήσεις"/>
+
+        <item
+            android:id="@+id/nav_edit"
+            android:icon="@drawable/edit_icon"
+            android:title="Επεξεργασία"/>
 
 
     </group>

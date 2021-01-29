@@ -37,15 +37,31 @@
 
     <Button
         android:id="@+id/next_process_btn"
-        android:layout_width="match_parent"
+        android:layout_width="155dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:text="Next"
-        android:textSize="20dp"
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
 
 
-        />
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="14dp"
+        android:text="Επόμενο"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/clearCartBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cart_list"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="12dp"
+        android:text="Διαγραφή καλαθιού"
+        android:textSize="18sp" />
 
 </RelativeLayout>
 

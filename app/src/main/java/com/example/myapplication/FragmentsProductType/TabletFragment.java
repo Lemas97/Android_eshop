@@ -1,4 +1,4 @@
-package com.example.myapplication.product_type_ui;
+package com.example.myapplication.FragmentsProductType;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
-import com.example.myapplication.ItemAdapter;
+import com.example.myapplication.Adapters.ItemAdapter;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import java.util.List;
 import Model.Proion;
 import db.AppDatabase;
 
-public class SmartwatchFragment extends Fragment {
+public class TabletFragment extends Fragment {
 
     ListView listView;
 
@@ -30,10 +30,11 @@ public class SmartwatchFragment extends Fragment {
     List<Double> price = new ArrayList<>();
     List<String> id = new ArrayList<>();
     ArrayList<Integer> quantities = new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_smartwatches,container, false);
+        return inflater.inflate(R.layout.fragment_tablet,container, false);            //Αυτό το Fragment ανοίγει όταν πατηθεί το/η Card/Κατηγορία SmartWatch
     }
 
     @Override
@@ -47,12 +48,12 @@ public class SmartwatchFragment extends Fragment {
             @Override
             public void run() {
 
-                List<Proion> products = db.proionDataAccessObject().findAll();
+                List<Proion> products = db.proionDataAccessObject().findAll();                      // Παίρνω όλα τα προϊόντα από την βάση
 
                 for (
                         int i = 0; i < products.size(); i++) {
-                    if (products.get(i).getType() == 4) {
-                        names.add(products.get(i).getName());
+                    if (products.get(i).getType() == 4) {                                           // Διαλέγω τα προϊόντα τύπου Tablet (κωδικός 4)
+                        names.add(products.get(i).getName());                                       // Χωρίζω τα πεδία του σε λίστες
                         description.add(products.get(i).getPerigrafi());
                         price.add(products.get(i).getKostos());
                         id.add(products.get(i).getId());
@@ -64,15 +65,12 @@ public class SmartwatchFragment extends Fragment {
                     @Override
                     public void run() {
 
-                        listView = getActivity().findViewById(R.id.smartwachtlist);
-                        ItemAdapter itemAdapter = new ItemAdapter(SmartwatchFragment.this.getActivity(), names, description, price, id, quantities);
-                        listView.setAdapter(itemAdapter);
+                        listView = getActivity().findViewById(R.id.tabletlist);
+                        ItemAdapter itemAdapter = new ItemAdapter(TabletFragment.this.getActivity(), names, description, price, id,quantities); // Περνάω τα προϊόντα τύπου Tablet
+                        listView.setAdapter(itemAdapter);                                                                                       // στον Adapter ώστε να τα εμφανίσει
                     }
-                }));
-
-
+                }));                                                                                                                            // στην λίστα Tablets
             }
         });
-
     }
 }

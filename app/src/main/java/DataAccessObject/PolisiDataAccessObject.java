@@ -13,16 +13,18 @@ import Model.Polisi;
 public interface PolisiDataAccessObject {
 
     @Insert
-    void insert(Polisi polisi);
-
+    void insert(Polisi polisi); //Εισαγωγή πώλησης στην βάση
 
     @Delete
-    void delete(Polisi polisi);
+    void delete(Polisi polisi); //Διαγραφή πώλησης από την βάση
 
     @Query("SELECT * FROM Polisi WHERE id=:polisiId")
-    Polisi findById(String polisiId);
+    Polisi findById(String polisiId);   //Εύρεση πώλησης από το id της πώλησης
+
+    @Query("SELECT * FROM Polisi WHERE proionId=:proionId")
+    List<Polisi> findByProductId(String proionId);  //Εύρεση πώληση από το id των πρωϊόντων
 
     @Query("SELECT * FROM Polisi")
-    List<Polisi> findAll();
+    List<Polisi> findAll();     //Εύρεση όλων των πωλήσεων
 
 }

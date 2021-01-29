@@ -56,18 +56,6 @@ public class Pelatis {
         this.name = name;
     }
 
-    public void setDiefthinsi(String diefthinsi) {
-        this.diefthinsi = diefthinsi;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setTilifono(String tilifono) {
-        this.tilifono = tilifono;
-    }
-
     @Override
     public String toString() {
         return "Pelatis{" +

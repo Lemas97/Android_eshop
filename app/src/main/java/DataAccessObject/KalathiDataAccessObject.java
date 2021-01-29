@@ -15,22 +15,20 @@ import Model.Polisi;
 public interface KalathiDataAccessObject {
 
     @Insert
-    void insert(Kalathi kalathi);
+    void insert(Kalathi kalathi);   //Εισαγωγή καλαθιού στην βάση
 
 
     @Delete
-    void delete(Kalathi kalathi);
+    void delete(Kalathi kalathi); //Διαγραφή καλαθιού από την βάση
 
     @Query("Update kalathi set posotita = :posotita where id = :id")
-    void update(String id, int posotita);
+    void update(String id, int posotita);       // Update ποσότητας καθαθιού
 
     @Query("SELECT * FROM Kalathi")
-    List<Kalathi> findAll();
+    List<Kalathi> findAll();                    // Όλα τα καλάθια σε μια λίστα
 
     @Query("SELECT proionId FROM Kalathi")
-    List<String> findIds();
+    List<String> findIds();                     // Όλα τα ids των προϊόντων μέσα στο καλάθι
 
-    @Query("SELECT * FROM Kalathi WHERE proionId = :proionId")
-    List<Kalathi> findByProductId(List<String> proionId);
 
 }

@@ -5,19 +5,17 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.List;
-import java.util.UUID;
 
 @Entity
 public class Kalathi {
 
     @PrimaryKey
     @NonNull
-    private String id;
+    private String id;              //Id καθαιού
     @ColumnInfo(name = "proionId")
-    private String proionId;
+    private String proionId;        //Id προϊόντος
     @ColumnInfo(name = "posotita")
-    private int posotita;
+    private int posotita;           //Ποσότητα προς αγορά
 
 
     public Kalathi(@NonNull String id, String proionId, int posotita) {
@@ -25,8 +23,6 @@ public class Kalathi {
         this.proionId = proionId;
         this.posotita = posotita;
     }
-
-
 
     @NonNull
     public String getId() {

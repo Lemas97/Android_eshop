@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txt"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="20dp"
                 android:hint="Ονοματεπώνυμο" />
 
@@ -65,7 +65,9 @@
 
         </RelativeLayout>
 
+
     </ScrollView>
+
     <Button
         android:id="@+id/confirm_final_order_btn"
         android:layout_width="match_parent"
@@ -77,7 +79,6 @@
         android:textColor="@android:color/white"
         android:textSize="20dp"
         />
-    
-    
+
 
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package db;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -15,7 +15,6 @@ import java.util.UUID;
 import Model.Pelatis;
 import Model.Polisi;
 import Model.Proion;
-import db.AppDatabase;
 
 public class Populate extends AppCompatActivity {
     private static final String DATABASE_NAME = "eshop";
@@ -26,7 +25,6 @@ public class Populate extends AppCompatActivity {
         final AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, DATABASE_NAME).build();
 
-
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
@@ -34,7 +32,7 @@ public class Populate extends AppCompatActivity {
                 List<Proion> proion = new ArrayList<>();
                 List<Polisi> polisi = new ArrayList<>();
 
-
+                // ΔΗΜΙΟΥΡΓΙΑ ΛΙΣΤΑΣ ΠΕΛΑΤΩΝ
                 pelatis.add(new Pelatis(UUID.randomUUID().toString(), "Romana Jenkins", "993 West Westminster Rd.Oklahoma City, OK 73104", "oxohuhe-1348@yopmail.com", "(212) 778-3666"));
                 pelatis.add(new Pelatis(UUID.randomUUID().toString(), "Kareem Gill", "7783 Randall Mill Dr. Oklahoma City, OK 73149", "iderrossett-8835@yopmail.com", "(421) 521-0034"));
                 pelatis.add(new Pelatis(UUID.randomUUID().toString(), "Barbara Bowers", "212 3rd Dr. Marcus Hook, PA 19061","affammewy-8595@yopmail.com","(977) 277-4122"));
@@ -45,8 +43,7 @@ public class Populate extends AppCompatActivity {
                 pelatis.add(new Pelatis(UUID.randomUUID().toString(), "Jethro Mckeown", "8053 Primrose Lane Edmond, OK 73012","udivetim-0472@yopmail.com","(613) 593-1169"));
                 pelatis.add(new Pelatis(UUID.randomUUID().toString(), "Anisa Winters", "250 Pilgrim Street Oklahoma City, OK 73105","sirrannonnor-9743@yopmail.com","(279) 260-8379"));
 
-
-
+                // ΔΗΜΙΟΥΡΓΙΑ ΛΙΣΤΑΣ ΠΡΟΙΟΝΤΩΝ
                 proion.add(new Proion(UUID.randomUUID().toString(), "Huawei MateBook D 14", "Το Huawei MateBook D 14 είναι εξοπλισμένο με μια IPS FullView οθόνη 1920 x 1080, με λεπτό πλαίσιο μόλις 4.8 χιλιοστά", 619.80, 23, 1));
                 proion.add(new Proion(UUID.randomUUID().toString(), "Apple MacBook Pro 15.4\"", "Ultrabook, 15.4\" IPS Panel 2880x1800, CPU: Intel Core i9 2.3GHz, RAM: 16GB, 512GB SSD, macOS, Κατασκευαστής: Apple.", 2584, 8, 1));
                 proion.add(new Proion(UUID.randomUUID().toString(), "Lenovo IdeaPad L340-17IRH", "Gaming, 17.3\" IPS Panel 1920x1080, CPU: Intel Core i5 2.4GHz, RAM: 8GB, 512GB SSD, No OS, Κατασκευαστής: Lenovo", 399.00, 32, 1));
@@ -60,6 +57,7 @@ public class Populate extends AppCompatActivity {
                 proion.add(new Proion(UUID.randomUUID().toString(), "Huawei Watch GT (Black)", "Οθόνη: 1.39\", 454x454 pixels, Βάρος: 46gr, Μέγεθος: 46mm", 86.71, 16,4));
                 proion.add(new Proion(UUID.randomUUID().toString(), "Samsung Galaxy Watch 46mm", "Οθόνη: 1.3\", 360x360 pixels, Βάρος: 63gr, Μέγεθος: 46mm", 187.40, 26,4));
 
+                //ΔΗΜΙΟΥΡΓΙΑ ΠΩΛΗΣΕΩΝ
                 polisi.add(Polisi.create(proion.get(0).getId(), pelatis.get(0).getId(), 3));
                 polisi.add(Polisi.create(proion.get(1).getId(), pelatis.get(1).getId(), 1));
                 polisi.add(Polisi.create(proion.get(2).getId(), pelatis.get(2).getId(), 20));
@@ -67,14 +65,12 @@ public class Populate extends AppCompatActivity {
                 polisi.add(Polisi.create(proion.get(3).getId(), pelatis.get(3).getId(), 61));
                 polisi.add(Polisi.create(proion.get(4).getId(), pelatis.get(4).getId(), 22));
 
-
+                // Εισαγωγή των λιστών στην βάση
                 Populate.this.pelatisPopulate(db, pelatis);
                 Populate.this.proionPopulate(db, proion);
                 Populate.this.polisiPopulate(db, polisi);
 
                 Populate.this.finish();
-
-
             }
         });
     }
@@ -94,10 +90,5 @@ public class Populate extends AppCompatActivity {
         for (Proion product : products) {
             db.proionDataAccessObject().insert(product);
         }
-    }
-
-    private <T> T randomFromList(List<T> list) {
-        Random rand = new Random();
-        return list.get(rand.nextInt(list.size()));
     }
 }
